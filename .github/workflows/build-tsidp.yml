@@ -93,7 +93,7 @@ jobs:
           echo "Platform: ${{ matrix.goos }}/${{ matrix.goarch }}" >> tsidp-${{ matrix.goos }}-${{ matrix.goarch }}.info
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: tsidp-${{ matrix.goos }}-${{ matrix.goarch }}
           path: |
@@ -106,7 +106,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download all artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
 
       - name: Prepare release assets
         run: |
@@ -119,7 +119,7 @@ jobs:
           ls -la release-assets/
 
       - name: Create Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: tsidp-${{ needs.check-release.outputs.latest-tag }}
           name: tsidp ${{ needs.check-release.outputs.latest-tag }}
